@@ -39,23 +39,26 @@
     </q-drawer>
 
     <q-page-container>
+		<router-view />
 		<q-tab-panels v-model="tab" animated>
-		<q-tab-panel name="mails">
-		  <div class="text-h6">Mails</div>
+		<q-tab-panel name="home">
+		  <div class="text-h6">home</div>
+		  Lorem ipsum dolor sit amet consectetur adipisicing elit.
+		  <tab-link :to="'/tab1'">
+			Tab1
+		  </tab-link>
+		</q-tab-panel>
+
+		<q-tab-panel name="sesi">
+		  <div class="text-h6">sesi</div>
 		  Lorem ipsum dolor sit amet consectetur adipisicing elit.
 		</q-tab-panel>
 
-		<q-tab-panel name="alarms">
-		  <div class="text-h6">Alarms</div>
-		  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-		</q-tab-panel>
-
-		<q-tab-panel name="movies">
-		  <div class="text-h6">Movies</div>
+		<q-tab-panel name="account">
+		  <div class="text-h6">account</div>
 		  Lorem ipsum dolor sit amet consectetur adipisicing elit.
 		</q-tab-panel>
 	  </q-tab-panels>
-      <router-view />
     </q-page-container>
 	
 	<q-footer bordered class="bg-grey-3 text-primary">
@@ -63,9 +66,13 @@
 			v-model="tab"
 			class="bg-primary text-white shadow-2"
 		>
-			<q-tab name="mails" label="Mails" icon="mail" />
-			<q-tab name="alarms" label="Alarms" icon="alarm" />
-			<q-tab name="movies" label="Movies" icon="alarm" />
+		<!-- name="home"  -->
+			<q-tab name="home" label="Home" icon="home"
+				@click="$router.push('/')"/>
+			<q-tab name="sesi" label="sesi" icon="accessible"
+				@click="$router.push('session')"/>
+			<q-tab name="account" label="Account" icon="person"
+				@click="$router.push('profile')"/>
 		</q-tabs>
       </q-footer>
   </q-layout>
@@ -74,6 +81,7 @@
 <script>
 import { defineComponent, ref } from 'vue'
 import EssentialLink from 'components/EssentialLink.vue'
+import TabLink from 'components/TabLink.vue'
 
 const linksList = [
   {
@@ -129,7 +137,8 @@ export default defineComponent({
 	},
 
   components: {
-    EssentialLink
+    EssentialLink,
+	TabLink,
   },
 
   setup () {
